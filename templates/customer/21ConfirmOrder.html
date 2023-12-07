@@ -1,0 +1,70 @@
+{% extends 'customer/cindex.html'%}
+{% block body %}
+
+<body>
+
+<form id="form1" name="form1" method="post" action="/E_PHARMA/confirmorder_post/">
+  <table width="200" border="1">
+      {% csrf_token %}
+
+
+           <tr>
+               <br>
+      <h3 style="background-color: lightgray">TOTAL AMOUNT</h3>
+               <td>{{ ttl }}</td>
+
+    </tr>
+      <br>
+  </table>
+<br>
+    <table class="table table-bordered table-hover table-striped">
+
+      <input type="hidden" name="ttl" value="{{ ttl }}" id="textfield"/>
+      <input type="hidden" name="confirm" value="{{ confirm }}" id="textfield"/>
+    <p style="color: red">*** Rs. 50 will be charged for purchases less than 100 ***</p>
+    <br>
+    <br>
+    <tr>
+      <h3>DELIVERY_ADDRESS</h3>
+
+    </tr>
+    <br>
+    <tr>
+      <td>PLACE</td>
+      <td><input type="text" name="textfield4" id="textfield4"class="form-control"  required/></td>
+    </tr>
+      <tr>
+      <td>LANDMARK</td>
+      <td><input type="text" name="textfield5" id="textfield5" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td><input type="text" name="textfield6" id="textfield6" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>DISTRICT</td>
+      <td><input type="text" name="textfield7" id="textfield7" value="Kozhikode" class="form-control"  readonly required/></td>
+    </tr>
+    <tr>
+      <td>PIN</td>
+      <td><input type="text" name="textfield8" id="textfield8" class="form-control"required/></td>
+    </tr>
+
+    <tr>
+      <td>PAYMENT MODE</td>
+      <td><select name="select" id="select" class="form-control">
+          <option value="cod">Cash on Delivery</option>
+          <option value="card">Card</option>
+      </select></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">{% if ttl == '0' %}
+
+      {% else %}
+          <input type="submit" name="button" id="button" value="CONFIRM" class="btn btn-success" />
+      {% endif %}</td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

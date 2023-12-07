@@ -1,0 +1,44 @@
+{% extends 'admin/adminindex.html'%}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/editinventory_post/">
+  <table class=" table table-bordered ">
+      {% csrf_token %}
+
+<tr>
+    <td>Product Name</td>
+    <td><select name="select2" class="form-control" required>
+        {% for i in var %}
+
+            <option value="{{i.id}}" hidden >{{ i.Product_Name }}</option>
+        <option value="{{ i.id }}">{{ i.Product_Name }}</option>
+        {% endfor %}
+
+    </select>
+    </td>
+</tr>
+      <tr>
+          <input type="hidden" name="id" value="{{ data.id }}">
+      <td>EXPIRY_DATE</td>
+      <td><input type="date" name="textfield3" id="textfield3"  value="{{ data.Expiry_Date }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>SHELF_CODE</td>
+      <td><input type="text" name="textfield4" id="textfield4"  value="{{ data.Shelf_Code }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>SHELF_ROWNO</td>
+      <td><input type="text" name="textfield5" id="textfield5"  value="{{ data.Shelf_Rowno }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>SHELF_COLNO</td>
+      <td><input type="text" name="textfield6" id="textfield6" value="{{ data.Shelf_Colno }}" required/></td>
+    </tr>
+    <tr>
+      <td colspan="2"align="center"><input type="submit" name="UPDATE" id="UPDATE" value="UPDATE" class="btn btn-info"/></td>
+
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

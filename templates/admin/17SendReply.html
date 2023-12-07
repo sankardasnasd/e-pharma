@@ -1,0 +1,18 @@
+{% extends 'admin/adminindex.html'%}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/sendreply_post/{{ id }}">
+  <table class="table table-bordered table-striped">
+      {% csrf_token %}
+    <tr>
+      <th >REPLY</th>
+      <th ><textarea name="textarea" id="textarea" placeholder="Text here " class="form-control" required></textarea></th>
+    </tr>
+    <tr>
+      <td colspan="2"align="center"><input type="submit" name="button" id="button" value="SEND" class="btn btn-info"/></td>
+
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

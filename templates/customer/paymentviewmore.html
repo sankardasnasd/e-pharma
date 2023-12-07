@@ -1,0 +1,64 @@
+{% extends 'customer/cindex.html'%}
+{% block body %}
+
+<body>
+<div  id="printableArea">
+<form id="form1" name="form1" method="post" action="/E_PHARMA/phistoryview_more/">
+
+    {% csrf_token %}
+   <table class="table table-bordered table-hover table-striped">
+
+    <tr>
+      <th width="30" scope="col">SLNO</th>
+      <th width="108" scope="col">PRODUCTS</th>
+      <th width="108" scope="col">PRICE</th>
+        <th width="104" scope="col">QUANTITY</th>
+{#      <th width="184" scope="col">&nbsp;</th>#}
+    </tr>
+    <tr>{% for i in data %}
+      <td>{{ forloop.counter}}</td>
+      <td>{{ i.PRODUCTS}}</td>
+        <td>{{ i.QUANTITY }} </td>
+        <td>{{ i.PRICE }}</td>
+
+{#        <td><a href="#">Generate Bill</a></td>#}
+
+        </tr>
+
+      {% endfor %}
+{#   <tr style="background-color: lightgray"><h1>Payment Recicived</h1></tr>#}
+  </table>
+<table class="table table-bordered"><tr><th colspan="4">Total</th><td>{{ ttl }}</td></tr></table>
+</form>
+</div>
+{#<button onclick="PrintElem('printableArea')">Print</button>#}
+
+{#<script>#}
+{#    function PrintElem(elem)#}
+{#{#}
+{#    var mywindow = window.open('', 'PRINT', 'height=800,width=1200');#}
+{##}
+{#    mywindow.document.write('<html><head><title>' + document.title  + '</title>');#}
+{#    mywindow.document.write('</head><body >');#}
+{#    mywindow.document.write('<h1>' + document.title  + '</h1>');#}
+{#    mywindow.document.write(document.getElementById(elem).innerHTML);#}
+{#    mywindow.document.write('</body></html>');#}
+{##}
+{#    mywindow.document.close(); // necessary for IE >= 10#}
+{#    mywindow.focus(); // necessary for IE >= 10*/#}
+{##}
+{#    mywindow.print();#}
+{#    mywindow.close();#}
+{##}
+{#    return true;#}
+{#}#}
+{#    function printDiv(divName) {#}
+{#        var printContents = document.getElementById("printableArea").innerHTML;#}
+{#        var originalContents = document.body.innerHTML;#}
+{#        document.body.innerHTML = printContents;#}
+{#        window.print();#}
+{#        document.body.innerHTML = originalContents;#}
+{#    }#}
+{#</script>#}
+</body>
+{% endblock %}

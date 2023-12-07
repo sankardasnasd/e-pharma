@@ -1,0 +1,39 @@
+{% extends 'admin/adminindex.html'%}
+{% block body %}
+    <body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/verifycustomer_post/">
+  <table class="fa-pull-left">
+      {% csrf_token %}
+    <tr>
+      <th ><input type="text" name="textfield" id="textfield" placeholder="Enter the Name" class="form-control"/></th>
+      <th ><input type="submit" name="button" id="button" value="SEARCH" class="btn btn-info" /></th>
+    </tr>
+  </table>
+<br>
+<br>
+  <table class="table table-bordered">
+    <tr style="background-color: lightgray">
+      <th>SLNO</th>
+      <th>NAME</th>
+      <th>PHONE</th>
+      <th>EMAIL</th>
+      <th>ADDRESS</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td width="50px">&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.Name }}</td>
+      <td>{{i.Phone}}</td>
+      <td>&nbsp;{{i.Email}}</td>
+      <td>{{i.House_Name}}<br>{{i.Place}}<br> {{i.Post}}<br> {{i.District}}<br> {{i.Pin}}</td>
+      <td width="50px"><a href="/E_PHARMA/approve_customer/{{ i.LOGIN.id }}"class="btn btn-success">Approve</a></td>
+      <td width="50px"><a href="/E_PHARMA/reject_customer/{{ i.LOGIN.id }}"class="btn btn-danger" onclick="return confirm('Are You Sure?')">Reject</a></td>
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+    </body>
+{% endblock %}

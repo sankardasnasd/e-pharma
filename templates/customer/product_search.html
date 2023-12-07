@@ -1,0 +1,43 @@
+{% extends 'customer/cindex.html'%}
+{% block body %}
+
+
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/csearchproduct_post/">
+  <table class="pull-left">
+      {% csrf_token %}
+    <tr>
+      <th scope="col"><input type="text" name="textfield" id="textfield" class="form-control" placeholder="Enter Product Name"/></th>
+      <th scope="col"><input type="submit" name="button" id="button" value="SEARCH" class="btn btn-info" /></th>
+    </tr>
+  </table><br><br>
+    <table class="table table-bordered table-hover table-striped">
+    <tr style="background-color: lightgray">
+      <th width="67" scope="col">SLNO</th>
+      <th width="120" scope="col">PRODUCT_NAME</th>
+      <th width="168" scope="col">PRODUCT_IMAGE</th>
+      <th width="257" scope="col">MANUFACTURER-NAME</th>
+     <th width="257" scope="col">NET.VOLUME/NO.OF TABLETS</th>
+{#      <th width="257" scope="col">Status</th>#}
+
+      <th width="171" scope="col">PRICE</th>
+{#      <th width="171" scope="col">&nbsp;</th>#}
+    </tr>
+    <tr>
+         {% for i in data %}
+      <td>{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.Product_Name }}</td>
+      <td>&nbsp;<img src="{{ i.Product_image }}" width="200px" height="200px"></td>
+      <td>{{ i.Manufacturer_Name }}</td>
+             <td> {{ i.Netvoldos }}</td>
+      <td>{{ i.Price }}</td>
+{#      <td></td>#}
+{#      <td></td>#}
+{#      <td><a href="/E_PHARMA/add_quantity/{{ i.id }}">Check For Availability</a></td>#}
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+</body>
+{% endblock %}

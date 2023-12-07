@@ -1,0 +1,40 @@
+{% extends 'customer/cindex.html'%}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/availabilityview_post/">
+  <table class="table table-bordered table-hover table-striped">
+  {% csrf_token %}
+    <tr style="background-color: lightgray">
+      <th width="54" scope="col">SLNO</th>
+{#  <th width="219" scope="col">DATE</th>#}
+        <th> </th>
+      <th width="219" scope="col">PRODUCT NAME</th>
+        <th width="219" scope="col">AVAILABILITY_STATUS</th>
+      <th width="89" scope="col">PRICE</th>
+        <th width="219" scope="col">QUANTITY</th>
+{#        <th width="89" scope="col">TOTAL_AMOUNT</th>#}
+{#      <th width="99" scope="col"></th>#}
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter}}</td>
+{#        <td>{{ i.Date }}</td>#}
+        <td><input type="checkbox" name="med" value="{{ i.id }}"></td>
+{#        <td><input type="checkbox" name="med" value="{{ i.PRODUCT.id }}"></td>#}
+
+
+      <td> {{ i.PRODUCT.Product_Name }}</td>
+      <td>{{ i.Status }} </td>
+      <td>{{ i.PRODUCT.Price }} </td>
+      <td> {{ i.Quantity }}</td>
+{#      <td> {{ i.Total }}</td>#}
+{#        <td><a href="/E_PHARMA/customer_confirm_order/">Confirm_Order</a> </td>#}
+    </tr>
+      {% endfor %}
+  </table>
+<Br>
+<center><input type="submit" value="ORDER" class="btn btn-success"></center>
+</form>
+</body>
+{% endblock %}

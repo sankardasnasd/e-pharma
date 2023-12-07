@@ -1,0 +1,39 @@
+{% extends 'admin/adminindex.html'%}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/viewfeedback_post/">
+  <table class="fa-pull-left">
+      {% csrf_token %}
+    <tr>
+      <th >FROM</th>
+      <th ><input type="date" name="textfield" id="textfield"class="form-control" required/></th>
+      <th>TO</th>
+      <th ><input type="date" name="textfield2" id="textfield2"class="form-control" required/></th>
+      <th ><input type="submit" name="button" id="button" value="SEARCH" class="btn btn-info"/></th>
+    </tr>
+  </table>
+<br>
+<br>
+  <table class="table table-bordered table-hover">
+    <tr style="background-color: lightgray">
+      <th >SLNO</th>
+      <th>DATE</th>
+      <th>CUSTOMER</th>
+      <th >FEEDBACK</th>
+
+    </tr>
+       {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter}}</td>
+      <td>{{ i.Date }}</td>
+      <td>&nbsp;{{ i.CUSTOMER.Name }}</td>
+      <td>{{ i.Feedback }}&nbsp;</td>
+
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+</body>
+{% endblock %}

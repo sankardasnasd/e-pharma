@@ -1,0 +1,43 @@
+{% extends 'admin/adminindex.html'%}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/vieworder_post/">
+  <table class="fa-pull-left">
+      {% csrf_token %}
+    <tr>
+      <th >FROM</th>
+      <th ><input type="date" name="textfield" id="textfield"class="form-control" required/></th>
+      <th >TO</th>
+      <th ><input type="date" name="textfield2" id="textfield2" class="form-control" required/></th>
+      <th><input type="submit" name="button" id="button" value="SEARCH" class="btn btn-info"/></th>
+    </tr>
+  </table>
+<br><br>
+  <table class="table table-bordered table-hover">
+    <tr style="background-color: lightgray">
+      <th >SLNO</th>
+      <th >DATE</th>
+        <th >CUSTOMER</th>
+      <th >TOTAL_AMOUNT</th>
+      <th >DELIVERY_ADDRESS</th>
+        <td> </td>
+        <td> </td>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ forloop.counter}}</td>
+      <td>&nbsp;{{ i.Date }}</td>
+      <td>{{ i.CUSTOMER.Name}}</td>
+      <td>{{ i.Total_Amount}}</td>
+      <td>{{ i.Place }}<br>{{ i.Landmark }}<br>{{ i.Post }}<br>{{ i.District }}<br>{{ i.Pin }}<br></td>
+      <td>&nbsp;<a href="/E_PHARMA/view_suborders/{{ i.id }}"class="btn btn-success">View more</a></td>
+      <td><a href="/E_PHARMA/delivered/{{ i.id }}" class="btn btn-success">Delivered</a></td>
+{#      <td><a href="/E_PHARMA/admin_view_payment_status/"class="btn btn-success">Payment Status</a></td>#}
+{#    <td>&nbsp;<a href="/E_PHARMA/admin_view_payment_status/"class="btn btn-danger">Delete</a></td>#}
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+</body>
+{% endblock %}

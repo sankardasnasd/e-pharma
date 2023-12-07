@@ -1,0 +1,37 @@
+{% extends 'admin/adminindex.html'%}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/view_rejectedcustomer_post/ ">
+  <table class="fa-pull-left">
+      {% csrf_token %}
+    <tr>
+      <th ><input type="text" name="textfield" id="textfield" placeholder="Enter the Name" class="form-control" /></th>
+      <th ><input type="submit" name="SEARCH" id="SEARCH" value="SEARCH"  class="btn btn-info"/></th>
+    </tr>
+
+  </table>
+<br>
+<br>
+  <table class="table table-bordered table-hover">
+    <tr style="background-color: lightgray">
+      <th >SLNO</th>
+      <th >NAME</th>
+      <th>PHONE</th>
+      <th >E-MAIL</th>
+      <th >ADDRESS</th>
+    </tr>
+    {% for i in data %}
+    <tr>
+      <td width="50px">&nbsp;{{ forloop.counter }}</td>
+      <td>{{ i.Name}}</td>
+      <td>{{ i.Phone }}</td>
+      <td>{{ i.Email }}</td>
+      <td>{{i.House_Name}}<br>{{i.Place}}<br> {{i.Post}}<br> {{i.District}}<br> {{i.Pin}}</td>
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+</body>
+{% endblock %}

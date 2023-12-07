@@ -1,0 +1,19 @@
+{% extends 'customer/cindex.html'%}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/sendfeedback_post/">
+   <table class="table table-bordered table-hover table-striped">
+      {% csrf_token %}
+    <tr>
+      <td>FEEDBACK</td>
+      <td><textarea name="textarea" id="textarea" cols="45" rows="5" class="form-control" required></textarea></td>
+    </tr>
+    <tr align="center">
+      <td colspan="2"><input type="submit" name="button" id="button" value="SEND" class="btn btn-success"/></td>
+
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

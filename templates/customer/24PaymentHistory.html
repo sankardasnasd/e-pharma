@@ -1,0 +1,46 @@
+{% extends 'customer/cindex.html'%}
+{% block body %}
+
+
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/viewpaymenthistory_post/">
+
+  <table class="pull-left">
+        {% csrf_token %}
+        <input type="hidden" name="pid" value="{{ i.id }}">
+  <tr>
+    <th>FROM</th>
+    <th><input type="date" name="textfield" id="textfield" class="form-control" required/></th>
+    <th>TO</th>
+    <th><input type="date" name="textfield2" id="textfield2"class="form-control" required/></th>
+    <th><input type="submit" name="button" id="button" value="SEARCH" class="btn btn-info"/></th>
+  </tr>
+</table><br><br>
+
+    <table class="table table-bordered table-hover table-striped">
+
+    <tr style="background-color: lightgray">
+      <th>SLNO</th>
+      <th>DATE</th>
+{#      <th width="166" scope="col">PRODUCT_NAME</th>#}
+{#      <th width="104" scope="col">QUANTITY</th>#}
+      <th width="89" scope="col">AMOUNT</th>
+      <th>STATUS</th>
+      <th> </th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.Date }}</td>
+{#      <td>&nbsp;{{ i.PRODUCT.Product_Name}}</td>#}
+{#      <td>{{ i.ORDER.Quantity }}</td>#}
+      <td>{{ i.Total_Amount }}&nbsp;</td>
+      <td>{{i.Status }}</td>
+      <td><a href="/E_PHARMA/phistoryview_more/{{ i.id }}" class="btn btn-info">View Bill</a> </td>
+    </tr>
+      {% endfor %}
+  </table>
+</div>
+</form>
+</body>
+{% endblock %}

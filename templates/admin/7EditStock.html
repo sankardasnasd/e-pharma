@@ -1,0 +1,126 @@
+{% extends 'admin/adminindex.html'%}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/editstock_post/"enctype="multipart/form-data">
+  <table class="table table-bordered">
+      {% csrf_token %}
+{#    <tr>#}
+{#        <input type="hidden" name="id" value="{{ data.id }}">#}
+{#      <td width="178">PRODUCT_CODE</td>#}
+{#      <td width="262"><input type="text" name="textfield" value="{{ data.Product_Code }}" id="textfield" /></td>#}
+{#    </tr>#}
+    <tr>
+        <input type="hidden" name="id" value="{{ data.id }}">
+      <td>PRODUCT_NAME</td>
+      <td><input type="text" name="textfield2"  value="{{ data.Product_Name }} " id="textfield2" class="form-control" required/></td>
+    </tr>
+      <tr>
+      <td>PRODUCT_IMAGE
+          <img src="{{data.Product_image}}"  width="200px" height="200px" alt="" />
+      <td><input type="file" name="image" class="form-control "/></td>
+    </tr>
+    <tr>
+      <td>MANUFACTURER_NAME</td>
+      <td><input type="text" name="textfield3" value="{{ data.Manufacturer_Name }}" id="textfield3" class="form-control" required/></td>
+    </tr>
+      <tr>
+      <td>CATEGORY</td>
+      <td><select name="select"  value="{{ data.Category }}" id="select" class="form-control" required>
+          <option value="RX">RX</option>
+          <option value="OTC">OTC</option>
+
+      </select></td>
+           <tr>
+      <th width="250">Type</th>
+      <td><select name="select2" value="{{ data.Product_Type }}" id="select2" class="form-control" required>
+          <option value="Tablet" {% if data.Product_Type == "Tablet"  %} selected {% endif %}>Tablet</option>
+          <option value="Syrup" {% if data.Product_Type == "Syrup"  %} selected {% endif %}>Syrup</option>
+          <option value="Antiseptic" {% if data.Product_Type == "Antiseptic"  %} selected {% endif %}>Antiseptic</option>
+          <option value="Ointment" {% if data.Product_Type == "Ointment"  %} selected {% endif %}>Ointment</option>
+          <option value="Balm" {% if data.Product_Type == "Balm"  %} selected {% endif %}>Balm</option>
+          <option value="Inhaler" {% if data.Product_Type == "Inhaler"  %} selected {% endif %}>Inhaler</option>
+          <option value="Diaper" {% if data.Product_Type == "Diaper"  %} selected {% endif %}>Diaper</option>
+          <option value="SanitaryNapkin" {% if data.Product_Type == "SanitaryNapkin"  %} selected {% endif %}>Sanitary Napkin</option>
+          <option value="haircare" {% if data.Product_Type == "haircare"  %} selected {% endif %}>Hair Care</option>
+          <option value="Skincare" {% if data.Product_Type == "Skincare"  %} selected {% endif %}>Skin Care</option>
+      </select></td>
+    </tr>
+    </tr>
+    <tr>
+      <td>QUANTITY</td>
+      <td><input type="text" name="textfield4" value="{{ data.Quantity}}" id="textfield4" class="form-control" required/></td>
+    </tr>
+      <tr>
+      <th width="250">Net. Volume/No.of Tablets per Unit</th>
+      <th><div>
+          <div class="col-lg-11"><input type="text" name="textfield5" value="{{ m1 }}" id="textfield5" class="form-control" required/></div>
+
+      <div class="col-lg-1"><label id="lab"name="lab">{{ m2 }}</label></div>
+      </div>
+<input type="hidden" name="type" id="type" class="form-control" required/>
+          </th>
+    </tr>
+    <tr>
+      <td>PRICE</td>
+      <td><input type="text" name="textfield6" value="{{ data.Price }}" id="textfield5" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td colspan="2"align="center"><input type="submit" name="button" id="button" value="UPDATE" class="btn btn-info"/></td>
+
+    </tr>
+  </table>
+</form>
+
+
+
+
+
+
+<script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+    </script>
+<script  type="text/javascript" >
+
+
+  $(document).on('change','#select2',function () {
+
+      $.ajax({
+          url: "/E_PHARMA/load_on_type/",
+          type: "POST",
+          data: {
+              'cid': $(this).val()
+          },
+          dataType: "json",
+          success: function (dat) {
+
+              $("#div").empty();
+              var d = dat['data'];
+              document.getElementById("lab").innerHTML=d
+              document.getElementById("type").value=d
+
+
+
+          },
+          error: function (ts) {
+
+              alert('no');
+
+          },
+          complete: function (ts) {
+
+          }
+      });
+
+
+  });
+
+
+</script>
+
+
+
+
+
+
+</body>
+{% endblock %}

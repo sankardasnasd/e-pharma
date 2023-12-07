@@ -1,0 +1,49 @@
+{% extends 'customer/cindex.html'%}
+{% block body %}
+
+
+<body>
+<form id="form1" name="form1" method="post" action="/E_PHARMA/editprofile_post/">
+   <table class="table table-bordered table-hover table-striped">
+
+      {% csrf_token %}
+    <tr> <input type="hidden" name="id" value="{{ data.id }}">
+      <td>NAME</td>
+      <td><input type="text" name="textfield" value="{{ data.Name }}" id="textfield" class="form-control" required pattern="[A-Z a-z ]+"/></td>
+    </tr>
+        <td>E-MAIL</td>
+      <td><input type="email" name="textfield3"  value="{{ data.Email }}" id="textfield3" class="form-control"required readonly/></td>
+    </tr>
+    <tr>
+      <td>PHONE</td>
+      <td><input type="text" name="textfield2" value="{{ data.Phone }}" id="textfield2" class="form-control"required pattern="[9876][0-9]{9}" maxlength="10"/></td>
+    </tr>
+    <tr>
+
+    <tr>
+      <td>HOUSE NAME</td>
+      <td><input type="text" name="textfield4" value="{{ data.House_Name }}" id="textfield4" class="form-control"required/></td>
+    </tr>
+    <tr>
+      <td>PLACE</td>
+      <td><input type="text" name="textfield5" value="{{ data.Place }}" id="textfield5" class="form-control"required/></td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td><input type="text" name="textfield6" value="{{ data.Post}}" id="textfield6" class="form-control"required/></td>
+    </tr>
+    <tr>
+      <td>DISTRICT</td>
+      <td><input type="text" name="textfield7"  value="{{ data.District }}" id="textfield7" class="form-control"required pattern="[A-Z a-z ]+"/></td>
+    </tr>
+    <tr>
+      <td>PIN</td>
+      <td><input type="text" name="textfield8" value="{{ data.Pin }}" id="textfield8" class="form-control"required pattern="[0-9]{6}" maxlength="6"/></td>
+    </tr>
+    <tr align="center">
+      <td colspan="2"><input type="submit" name="button" id="button" value="UPDATE" class="btn btn-success"/></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}
